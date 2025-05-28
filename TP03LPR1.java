@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 class Hora{
 	
-//atributos
+//atributoss
 
 	private int hora;
 	private int min;
@@ -146,6 +146,40 @@ class Hora{
 			}while (segu < 0 || segu > 59);
 			
 		}
+		
+			public string getHora1(){
+				
+				return getHor() + ":" + getMin() + ":" + getSeg();
+				
+			}
+			
+			public string getHora2(){
+				
+				if(getHor > 12){
+				
+				int hora;
+				
+				hora = getHor - 12;
+				
+				return hora + ":" + getMin() + ":" + getSeg() + " PM";
+				
+				}else{
+				
+				return getHor() + ":" + getMin() + ":" + getSeg() + " AM";
+				
+				}
+			}
+			
+			public int getSegundos(){
+				
+				int segundos;
+				
+				segundos = ((getHor() * 60) + getMin()) * 60 + getSeg();
+				
+				System.out.println(getHora1 + " é igual a: " + segundos + "Segundos")
+				
+				
+			}
 	
 }
 
