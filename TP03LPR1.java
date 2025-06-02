@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 class Hora{
 	
-//atributos
+//atributoss
 
 	private int hora;
 	private int min;
@@ -77,24 +77,31 @@ class Hora{
 
 		public void setHor(){
 			
-			int hor;
+			int hor = -1;
 			
 			do{
 			
 			System.out.println("Digite o valor da hora: ");
-			hor = scan.nextInt();
 			
-			if(!scan.hasNextInt()){
+			if(scan.hasNextInt()){
 				
-				System.out.println("Entrada inválida! O valor deve ser um número");
+				hor = scan.nextInt();
+			
+				if(hor >= 0 && hor <= 23){
+					
+					this.hora = hor;
+					
+				} else{
+					
+					System.out.println("Entrada invalida! A hora deve estar entre 0 e 23.");
+					
+				}
+			
+			} else {
 				
-			} else if(0 > hor || hor > 23) {
+				System.out.println("Entrada invalida! Digite um numero inteiro.");
+				scan.next();
 				
-				System.out.println("Entrada inválida! O valor de hora deve estar entre 0 e 23");
-				
-			} else{
-				
-				this.hora = hor;
 			}
 			
 			}while (hor < 0 || hor > 23);
@@ -103,20 +110,30 @@ class Hora{
 
 		public void setMin(){
 			
-			int minu;
+			int minu = -1;
 			
 			do{
 			
 			System.out.println("Digite o valor dos minutos: ");
-			minu = scan.nextInt();
 			
-			if(0 <= minu && minu <= 59) {
+			if(scan.hasNextInt()){
 				
-				this.min = minu;
+				minu = scan.nextInt();
+			
+				if(minu >= 0 && minu <= 59){
+					
+					this.min = minu;
+					
+				} else{
+					
+					System.out.println("Entrada invalida! Os minutos devem estar entre 0 e 59.");
+					
+				}
+			
+			} else {
 				
-			} else{
-				
-				System.out.println("Digite um valor de minutos valido!");
+				System.out.println("Entrada invalida! Digite um numero inteiro.");
+				scan.next();
 				
 			}
 			
@@ -126,37 +143,114 @@ class Hora{
 
 		public void setSeg(){
 			
-			int segu;
+			int segu = -1;
 			
 			do{
 			
 			System.out.println("Digite o valor dos segundos: ");
-			segu = scan.nextInt();
 			
-			if(0 <= segu && segu <= 59) {
+			if(scan.hasNextInt()){
 				
-				this.seg = segu;
+				segu = scan.nextInt();
+			
+				if(segu >= 0 && segu <= 59){
+					
+					this.seg = segu;
+					
+				} else{
+					
+					System.out.println("Entrada invalida! Os segundos devem estar entre 0 e 59.");
+					
+				}
+			
+			} else {
 				
-			} else{
-				
-				System.out.println("Digite um valor de segundos valido!");
+				System.out.println("Entrada invalida! Digite um numero inteiro.");
+				scan.next();
 				
 			}
 			
 			}while (segu < 0 || segu > 59);
 			
 		}
+		
+//metodos com acoes
+		
+			public String getHora1(){
+				
+				return getHor() + ":" + getMin() + ":" + getSeg();
+				
+			}
+			
+			public String getHora2(){
+				
+				if(getHor() > 12){
+				
+				int hora;
+				
+				hora = getHor() - 12;
+				
+				return hora + ":" + getMin() + ":" + getSeg() + " PM";
+				
+				} else if(getHor() == 12){
+					
+					return 12 + ":" + getMin() + ":" + getSeg() + " PM";
+					
+				} else{
+				
+				return getHor() + ":" + getMin() + ":" + getSeg() + " AM";
+				
+				}
+			}
+			
+			public int getSegundos(){
+				
+				int segundos;
+				
+				segundos = ((getHor() * 60) + getMin()) * 60 + getSeg();
+				
+				return segundos;
+				
+				
+			}
 	
 }
 
 public class TP03LPR1{
 	
 	public static void main(String[] args){
-		
+		 
 	
+		Hora primeiraHora;
+		primeiraHora = new Hora();
 		
+		Hora segundaHora;
+		segundaHora = new Hora(15, 16, 12);
 		
+		System.out.println();
+		System.out.println("_______________________________________");
+		System.out.println("Exibindo informacoes");
 		
+		System.out.println();
+		System.out.println("_______________________________________");
+		
+		System.out.println("Horario passado por parametro");
+		System.out.println();
+		
+		System.out.println("Hora informada: " + segundaHora.getHora1());
+		System.out.println("Horario no formato americano: " + segundaHora.getHora2());
+		System.out.println("Total de segundos da hora inforamda: " + segundaHora.getSegundos());
+		
+		System.out.println("_______________________________________");
+		System.out.println();
+		
+		System.out.println("Horario passado sem parametro");
+		System.out.println();
+		
+		System.out.println("Hora informada: " + primeiraHora.getHora1());
+		System.out.println("Horario no formato americano: " + primeiraHora.getHora2());
+		System.out.println("Total de segundos da hora inforamda: " + primeiraHora.getSegundos());
+		System.out.println("_______________________________________");
 		
 	}
 	
